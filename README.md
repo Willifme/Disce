@@ -1,0 +1,1 @@
+Disce is a project that aims to consolidate information. Disce is written in Python using Google App Engine. API's used: Wordnik
