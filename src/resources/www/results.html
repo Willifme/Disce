@@ -1,0 +1,23 @@
+<html>
+    
+    <head>
+        
+        <title>Results</title>
+        
+    </head>
+    
+    <body>
+         {% for search in searchs %}
+         {% if search.author %}
+        <b>{{ search.author.nickname() }}</b> wrote:
+        {% else %}
+        An anonymous person wrote:
+       {% endif %}
+       <blockquote>{{ search.content }}</blockquote>
+       {% endfor %}
+        
+        More coming soon...
+        
+    </body>
+    
+</html>
