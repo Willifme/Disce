@@ -6,7 +6,7 @@ from google.appengine.ext import ndb
 
 import jinja2
 import webapp2
-
+import Wordnik
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -22,18 +22,6 @@ DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
     """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
     return ndb.Key('Guestbook', guestbook_name)
-
-class Disce(webapp2.RequestHandler):
-    
-    def get(self):
-        
-        disce_template = {
-            
-            
-        }
-        template = JINJA_ENVIRONMENT.get_template('disce.html')
-        self.response.write(template.render(disce_values))
-
 
 class Greeting(ndb.Model):
     """Models an individual Guestbook entry with author, content, and date."""
@@ -69,7 +57,38 @@ class MainPage(webapp2.RequestHandler):
 
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
-
+        
+class Disce(webapp2.RequestHandler):
+    
+    #'definition = Wordnik.Definition.getDefinition('badger')
+    
+    def get(self):
+        
+        disce_values = {
+            
+            
+        }
+        template = JINJA_ENVIRONMENT.get_template('disce.html')
+        self.response.write(template.render(disce_values))
+    
+    def post(self):
+    
+        self.response.headers['Content-Type'] = 'text/plain'
+    
+        self.response.write('Take reference at www.wordnik.com for proper spelling.Wordnik has a weird captial thing going on.\n')
+        
+        greeting = Greeting(parent=guestbook_key('guestbook_name'))
+        
+        greeting.content = self.request.get('searchQuery')
+        
+        definitions = Wordnik.wordApi.getDefinitions(greeting.content,
+                                            partOfSpeech='',
+                                            sourceDictionaries='all',
+                                            limit=200)
+        
+        self.response.write(definitions[0].text+"\n")
+        
+        
 class Guestbook(webapp2.RequestHandler):
 
     def post(self):
