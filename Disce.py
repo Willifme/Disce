@@ -12,55 +12,30 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'])
 
-DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
+DEFAULT_SEARCH_NAME = 'searchterm_name'
 
 
 # We set a parent key on the 'Greetings' to ensure that they are all in the same
 # entity group. Queries across the single entity group will be consistent.
 # However, the write rate should be limited to ~1/second.
 
-def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
+def searchterm_key(searchterm_name=DEFAULT_SEARCH_NAME):
     """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
-    return ndb.Key('Guestbook', guestbook_name)
+    return ndb.Key('Search', searchterm_name)
 
-class Greeting(ndb.Model):
+class Search(ndb.Model):
     """Models an individual Guestbook entry with author, content, and date."""
     author = ndb.UserProperty()
     content = ndb.StringProperty(indexed=False)
-    date = ndb.DateTimeProperty(auto_now_add=True)
 
+#class MainPage(webapp2.RequestHandler):
 
-class MainPage(webapp2.RequestHandler):
+    #def get(self):
 
-    def get(self):
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        
-        greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        
-        greetings = greetings_query.fetch(10)
-
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
-
-        template_values = {
-            'greetings': greetings,
-            'guestbook_name': guestbook_name,
-            'url': url,
-            'url_linktext': url_linktext,
-        }
-
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(template_values))
+    #    template = JINJA_ENVIRONMENT.get_template('index.html')
+   #     self.response.write(template.render(template_values))
         
 class Disce(webapp2.RequestHandler):
-    
-    #'definition = Wordnik.Definition.getDefinition('badger')
     
     def get(self):
         
@@ -69,6 +44,7 @@ class Disce(webapp2.RequestHandler):
             
         }
         template = JINJA_ENVIRONMENT.get_template('disce.html')
+        
         self.response.write(template.render(disce_values))
     
     def post(self):
@@ -77,40 +53,18 @@ class Disce(webapp2.RequestHandler):
     
         self.response.write('Take reference at www.wordnik.com for proper spelling.Wordnik has a weird captial thing going on.\n')
         
-        greeting = Greeting(parent=guestbook_key('guestbook_name'))
+        search = Search(parent=searchterm_key('searchterm_name'))
         
-        greeting.content = self.request.get('searchQuery')
+        search.content = self.request.get('searchQuery')
         
-        definitions = Wordnik.wordApi.getDefinitions(greeting.content,
+        definitions = Wordnik.wordApi.getDefinitions(search.content,
                                             partOfSpeech='',
                                             sourceDictionaries='all',
                                             limit=200)
         
         self.response.write(definitions[0].text+"\n")
-        
-        
-class Guestbook(webapp2.RequestHandler):
-
-    def post(self):
-        # We set the same parent key on the 'Greeting' to ensure each greeting
-        # is in the same entity group. Queries across the single entity group
-        # will be consistent. However, the write rate to a single entity group
-        # should be limited to ~1/second.
-        guestbook_name = self.request.get('guestbook_name',
-                                          DEFAULT_GUESTBOOK_NAME)
-        greeting = Greeting(parent=guestbook_key(guestbook_name))
-
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
-
-        greeting.content = self.request.get('content')
-        greeting.put()
-
-        query_params = {'guestbook_name': guestbook_name}
-        self.redirect('/?' + urllib.urlencode(query_params))
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/sign', Guestbook),
+    ('/', Disce),
     ('/disce', Disce)
 ], debug=True)
