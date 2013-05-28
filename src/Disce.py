@@ -69,9 +69,23 @@ class Disce(webapp2.RequestHandler):
                                             sourceDictionaries='all',
                                             limit=200)
         
-        self.response.write(definitions[0].text+"\n")
+        self.response.write(definitions[0].text)
+        
+    #    self.redirect('/results')
+
+class Results(webapp2.RequestHandler):
+    
+    def get(self):
+        disce_values = {}
+        template = JINJA_ENVIRONMENT.get_template('/resources/www/results.html')
+        self.response.write(template.render(disce_values))
+        search = Search(parent=searchterm_key('searchterm_name'))
+        search.content = 'hello'
+        
+
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/disce', Disce)
+    ('/disce', Disce),
+    ('/disce/results', Results)
 ], debug=True)
