@@ -50,7 +50,7 @@ class Disce(webapp2.RequestHandler):
         
         disce_values = {}
         
-        template = JINJA_ENVIRONMENT.get_template('disce.html')
+        template = JINJA_ENVIRONMENT.get_template('/resources/www/disce.html')
         
         self.response.write(template.render(disce_values))
     
