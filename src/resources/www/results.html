@@ -7,17 +7,19 @@
     </head>
     
     <body>
-         {% for search in searchs %}
-         {% if search.author %}
-        <b>{{ search.author.nickname() }}</b> wrote:
+  <!--      {% for in randge; for test in searchQuery%}
+        <center><div><input type="text" value="test.name" name=""></div></center>
+    {% endfor %}-->
+    
+    
+     {% for item in disce_values %}
+        {% if item %}
+           <input type="text" name="name" value="item.name">
         {% else %}
-        An anonymous person wrote:
-       {% endif %}
-       <blockquote>{{ search.content }}</blockquote>
-       {% endfor %}
-        
-        More coming soon...
-        
+           <input type="text" name="<your_blank_value>" value="<your_blank>">
+        {% endif %}
+      {% endfor %}
+    
     </body>
     
 </html>

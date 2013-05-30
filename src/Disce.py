@@ -14,6 +14,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 DEFAULT_SEARCH_NAME = 'searchterm_name'
 
+searchQuery
 
 # We set a parent key on the 'Greetings' to ensure that they are all in the same
 # entity group. Queries across the single entity group will be consistent.
@@ -62,9 +63,11 @@ class Disce(webapp2.RequestHandler):
         
         search = Search(parent=searchterm_key('searchterm_name'))
         
-        search.content = self.request.get('searchQuery')
+        global searchQuery
         
-        definitions = Wordnik.wordApi.getDefinitions(search.content,
+        searchQuery = self.request.get('searchQuery')
+        
+        definitions = Wordnik.wordApi.getDefinitions(searchQuery,
                                             partOfSpeech='',
                                             sourceDictionaries='all',
                                             limit=200)
@@ -76,9 +79,10 @@ class Disce(webapp2.RequestHandler):
 class Results(webapp2.RequestHandler):
     
     def get(self):
-        disce_values = {}
+        global searchQuery
+        disce_values = {'searchQuery': test}
         template = JINJA_ENVIRONMENT.get_template('/resources/www/results.html')
-        self.response.write(template.render(disce_values))
+     #   self.response.write('<center><div><input type="text" value="searchQuery" name="test"></div></center>')
         search = Search(parent=searchterm_key('searchterm_name'))
         search.content = 'hello'
         
