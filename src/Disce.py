@@ -14,7 +14,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 DEFAULT_SEARCH_NAME = 'searchterm_name'
 
-searchQuery
+test = 'test'
 
 # We set a parent key on the 'Greetings' to ensure that they are all in the same
 # entity group. Queries across the single entity group will be consistent.
@@ -47,6 +47,8 @@ class MainPage(webapp2.RequestHandler):
             
 class Disce(webapp2.RequestHandler):
     
+   # test = getDefinition(self).searchQuery
+    
     def get(self):
         
         disce_values = {}
@@ -54,6 +56,8 @@ class Disce(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/resources/www/disce.html')
         
         self.response.write(template.render(disce_values))
+
+    
     
     def post(self):
     
@@ -63,29 +67,38 @@ class Disce(webapp2.RequestHandler):
         
         search = Search(parent=searchterm_key('searchterm_name'))
         
-        global searchQuery
-        
-        searchQuery = self.request.get('searchQuery')
-        
-        definitions = Wordnik.wordApi.getDefinitions(searchQuery,
-                                            partOfSpeech='',
-                                            sourceDictionaries='all',
-                                            limit=200)
+        #getDefinition(self)
         
         self.response.write(definitions[0].text)
         
-    #    self.redirect('/results')
+        self.searchResults = definitions[0].text
+        
+        
+        self.test = 'test2'
+        
+    def  getDefinition(self):
+    
+        searchQuery = self.request.get('searchQuery')
+    
+        self.definitions = Wordnik.wordApi.getDefinitions(searchQuery,
+                                            partOfSpeech='',
+                                            sourceDictionaries='all',
+                                            limit=200)
 
+        searchQuerytwo = definitions[0].text
+
+        return test
+    
 class Results(webapp2.RequestHandler):
     
     def get(self):
-        global searchQuery
-        disce_values = {'searchQuery': test}
+        disce = Disce(webapp2.RequestHandler)
+        url_linktext = disce.test
+    
+        disce_values = {'url_linktext': url_linktext}
         template = JINJA_ENVIRONMENT.get_template('/resources/www/results.html')
-     #   self.response.write('<center><div><input type="text" value="searchQuery" name="test"></div></center>')
-        search = Search(parent=searchterm_key('searchterm_name'))
-        search.content = 'hello'
         
+        self.response.write(template.render(disce_values))
 
 
 application = webapp2.WSGIApplication([
