@@ -73,6 +73,8 @@ class Disce(webapp2.RequestHandler):
      #   definitions[0].text
     test = post()
 
+    print "git test"
+
 class Results(webapp2.RequestHandler):
 
     def get(self):
