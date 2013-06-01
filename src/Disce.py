@@ -14,8 +14,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 DEFAULT_SEARCH_NAME = 'searchterm_name'
 
-test = 'test'
-
 # We set a parent key on the 'Greetings' to ensure that they are all in the same
 # entity group. Queries across the single entity group will be consistent.
 # However, the write rate should be limited to ~1/second.
@@ -25,7 +23,7 @@ def searchterm_key(searchterm_name=DEFAULT_SEARCH_NAME):
     return ndb.Key('Search', searchterm_name)
 
 class Search(ndb.Model):
-    
+
     """Models an individual Guestbook entry with author, content, and date."""
     author = ndb.UserProperty()
     content = ndb.StringProperty(indexed=False)
@@ -33,71 +31,57 @@ class Search(ndb.Model):
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
-    
-     #   mainmenu_values = {}
-    #    template = JINJA_ENVIRONMENT.get_template('index.html')
-            
-     #   self.response.write(template.render(mainmenu_values))
+
+        mainmenu_values = {}
+        template = JINJA_ENVIRONMENT.get_template('/resources/www/index.html')
+
+        self.response.write(template.render(mainmenu_values))
         user = users.get_current_user()
 
         if user:
             self.redirect('/disce')
         else:
             self.redirect(users.create_login_url(self.request.uri))
-            
+
 class Disce(webapp2.RequestHandler):
-    
+
    # test = getDefinition(self).searchQuery
-    
+
     def get(self):
-        
+
         disce_values = {}
-        
+
         template = JINJA_ENVIRONMENT.get_template('/resources/www/disce.html')
-        
+
         self.response.write(template.render(disce_values))
 
-    
-    
     def post(self):
-    
+
         self.response.headers['Content-Type'] = 'text/plain'
-    
+
         self.response.write('Take reference at www.wordnik.com for proper spelling.Wordnik has a weird captial thing going on.\n')
-        
+
         search = Search(parent=searchterm_key('searchterm_name'))
-        
-        #getDefinition(self)
-        
-        self.response.write(definitions[0].text)
-        
-        self.searchResults = definitions[0].text
-        
-        
-        self.test = 'test2'
-        
-    def  getDefinition(self):
-    
+
         searchQuery = self.request.get('searchQuery')
-    
-        self.definitions = Wordnik.wordApi.getDefinitions(searchQuery,
+
+        definitions = Wordnik.wordApi.getDefinitions(searchQuery,
                                             partOfSpeech='',
                                             sourceDictionaries='all',
                                             limit=200)
 
-        searchQuerytwo = definitions[0].text
+     #   definitions[0].text
+    test = post()
 
-        return test
-    
 class Results(webapp2.RequestHandler):
-    
+
     def get(self):
         disce = Disce(webapp2.RequestHandler)
         url_linktext = disce.test
-    
+
         disce_values = {'url_linktext': url_linktext}
         template = JINJA_ENVIRONMENT.get_template('/resources/www/results.html')
-        
+
         self.response.write(template.render(disce_values))
 
 
