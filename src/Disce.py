@@ -73,7 +73,7 @@ class Disce(webapp2.RequestHandler):
      #   definitions[0].text
     test = post()
 
-    print("git test")
+    print("git test2")
 
 class Results(webapp2.RequestHandler):
 
