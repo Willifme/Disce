@@ -1,19 +1,122 @@
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 
-    <head>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
 
-        <title>Disce Results</title>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <link type="text/css" rel="stylesheet" href="resources/www/stylesheets/main.css" />
+  <title>Disce Results</title>
+  <meta name="keywords" content="window, manager, experiment, html5, css3, javascript, github, web, example" />
+  <meta name="viewport" content="width=1024" />
+  <link href='ventus/stylesheets/normalize.css' rel='stylesheet' type='text/css' />
+  <link href='ventus/stylesheets/simple.css' rel='stylesheet' type='text/css' />
+  <link href='ventus/build/ventus.css' rel='stylesheet' type='text/css' />
+  <link href='ventus/stylesheets/browseralert.css' rel='stylesheet' type='text/css' />
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,300,400" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="ventus/vendor/jquery.js">
+</script>
+</head>
 
-    </head>
+<body unselectable="on">
+  <div class="browser-overlay">
+    <div class="wrapper">
+      <h2>This experiment works in <strong>webkit</strong> based browsers only!</h2>
 
-    <body>
+      <p>This means we cannot guarantee that everything will be displayed properly on
+      your browser. Sorry. However please try <a href=
+      "https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> or <a href=
+      "http://firefox.com">Firefox.&gt;Take a look at other browsers running</a> <a href=
+      "http://en.wikipedia.org/wiki/List_of_web_browsers">Webkit</a></p><small><a href=
+      "#" class="close-button">Continue anyway &gt;</a></small>
+    </div>
+  </div>
 
-        <center><b>Disce Results: </b></center>
-        <center><b>NOTE CAPITALS and lowercase need to be like Wordnik's</b></center>
-        <center><div>{{ url_linktext }}</div></center>
+  <div class="buttonbar">
+    <button class="button create-button">Create Window</button> <button class=
+    "button expose-button">Expos&#233;</button>
+  </div><script type="text/javascript" src="../../vendor/jquery.js">
+</script><script type="text/javascript" src="../../vendor/handlebars.js">
+</script><script type="text/javascript" src="../../build/ventus.js">
+</script><script type="text/javascript">
+//<![CDATA[
+            
+            $(document).ready(function() {
+                var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+                var $browserAlert = $('.browser-overlay');
 
-    </body>
+                if(!isChrome && !isSafari) {
+                    $browserAlert.find('.close-button').click(function() {
+                        $browserAlert.hide();
+                    });
 
+                    $browserAlert.show();
+
+                }
+
+                var wm = new Ventus.WindowManager();
+
+                var pos = 50;
+                    
+                var num = 1;
+                    
+                window.wm = wm; // For debugging reasons
+
+                $('.create-button').click(function(){
+                    wm.createWindow({
+                        title: 'Search ' + (num++),
+                        x: (pos += 60),
+                        y: pos,
+                        width: 400,
+                        height: 250
+                        })
+                    .open();
+                });
+
+                $('.expose-button').click(_.throttle(function(){
+                    if(wm.mode === 'expose')
+                        wm.mode = 'default';
+                    else
+                    wm.mode = 'expose';
+
+                    return false;
+                        
+                    }, 1000));
+                });
+    //]]>
+  </script><script type="text/javascript">
+//<![CDATA[
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-11674457-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+    //]]>
+  </script>
+
+  <center>
+    <strong>Disce Results:</strong>
+  </center>
+
+  <center>
+    <strong>NOTE CAPITALS and lowercase need to be like Wordnik's</strong>
+  </center>
+
+  <center>
+    <div>
+      {{ url_linktext }}
+    </div>
+  </center>
+</body>
 </html>
