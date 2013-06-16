@@ -32,8 +32,6 @@
 
 <body unselectable="on">
 
-  <h1 id="searchResults"> test </h1>
-
   <div class="browser-overlay">
   
     <div class="wrapper">
@@ -46,6 +44,12 @@
       
     </div>
     
+  </div>
+
+  <div id="test">
+
+     {{ url_linktext }}
+
   </div>
 
   <div class="buttonbar">
@@ -88,14 +92,14 @@
 
 					$('.create-button').click(function(){
 							wm.createWindow({
-								title: document.getElementById("searchResults") + '- Disce Results',
+								title: document.getElementById('test').innerHTML + '- Disce Results',
 								x: (previousxpos += 120),
 								y: previousypos,
 								width: 400,
 								height: 250
 							})
 							.open();
-						//	console.log("New window x: " + previousxpos += previousxpos);
+							//console.log("New window x: " + previousxpos += previousxpos);
 							
 					});
 
