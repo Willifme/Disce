@@ -5,8 +5,21 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
+- url: /resources/www/ventus/stylesheets/
+
+  static_dir: resources/www/ventus/stylesheets
+
+- url: /resources/www/ventus/build/
+
+  static_dir: resources/www/ventus/build
+
+- url: /resources/www/ventus/vendor/
+
+  static_dir: resources/www/ventus/vendor
+  
+- url: /resources/www/ventus/img/
+
+  static_dir: resources/www/ventus/img
 
 - url: /.*
   script: Disce.application
@@ -15,4 +28,6 @@ libraries:
 - name: webapp2
   version: latest
 - name: jinja2
+  version: latest
+- name: Wornik
   version: latest
