@@ -1,0 +1,52 @@
+{% extends "template.html" %}
+
+{% block title %} {{ searchQuery }} - {% endblock %} {% block titlesuffix %} Search {% endblock %}
+
+{% block span %}
+<div class="mainpagecentre">
+        <div class="container">
+
+            <div class="hero-unit">
+
+
+                <form action="" method="POST" class="navbar-form pull-right">
+
+                        <input type="text" name="searchQuery" class="span2 pull-left" placeholder="Search here" autocomplete="off" list="suggestions">
+
+                        <input type="submit" value="Search" class="btn">
+
+                </form>
+
+
+                <h1>Results  for {{ searchQuery }}</h1>
+
+                <p> <p>
+
+                <p> Definition: {{ definitionResults }} </p>
+
+                <p> <p>
+
+                <p> Image results: </p>
+
+                <p> <img src="{{ url_for('static', filename='img/logo.png') }}" title="Disce"> </p>
+
+                <p> </p>
+
+                <p> Text Editor: </p>
+
+                <p> <div class="btn-toolbar">
+
+			<div class="btn-group">
+
+				<button class="btn"> Edit in realtime (Requires Google Account and friends) </button> 
+
+				<button class="btn"> Edit by you're self </button>
+
+            		</div>
+
+        	    </div> </p>
+
+	     </div>
+	</div>
+</div>
+{% endblock %}

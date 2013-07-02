@@ -14,24 +14,12 @@
 
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.css') }}" />
 
-        {% block customcss %} {% endblock %}
+	{% block customcss %} {% endblock %}
 
-        <style>
+        <style type="text/css">
 
-        body {
-            padding-top: 60px; /* to make the container go all the way to the bottom of the top bar */
-        }
-
-        .mainpagecentre {
-
-            position: fixed;
-            left: 50%;
-            top: 40%;
-            height: 400px;
-            width: 600px;
-            margin-top: -200px;
-            margin-left: -300px;
-
+	body {
+                padding-top: 60px; /* to make the container go all the way to the bottom of the top bar */
         }
 
         </style>

@@ -2,15 +2,29 @@
 
 {% block indexactive %} "active" {% endblock %}
 
-{% block span %}
+<style>
 
-  <div class="container-fluid mainpagecentre">
+	mainpagecentre {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+	}
+
+</style>
+
+
+{% block span %}
+<div class="mainpagecentre">
+
+  <div class="container-fluid">
 
         <div class="row-fluid">
 
             <div class="span12">
 
-                    <center> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce" href=""> </a> </center>
+                <div class="hero-unit">
+
+		   <center> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce" href=""> </a> </center>
 
                     <center>  <b> Welcome to Disce version {{ version }} </b> </center>
 
@@ -21,6 +35,8 @@
                         <center> <div> <input type="submit" value="Search" class="btn"> </div> </center>
 
                     </form>
+
+                </div>
 
             </div>
 
