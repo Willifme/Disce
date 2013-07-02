@@ -1,0 +1,18 @@
+application: disce
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /resources/www/stylesheets
+  static_dir: stylesheets
+
+- url: /.*
+  script: Disce.application
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
