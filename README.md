@@ -17,4 +17,4 @@ Technology Used for Google App Engine version
 
 API's Used
 --------------
-- Wornik - For definitions of words.
+- Wordnik - For definitions of words.
