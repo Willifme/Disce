@@ -63,5 +63,4 @@ class Search(flask.views.MethodView):  # Class for searching
                                 searchQuery = searchqueryProcessed,
                                 definitionResults =  definitionSearch[0].text,
                                 wikipediaResults = wikiArticle.summary.decode('utf-8'),
-                                imageResults = urllist[0],
-				version = version.version)
+                                imageResults = urllist[0])
