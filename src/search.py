@@ -1,11 +1,11 @@
 from flask import render_template, request
+from wikiapi import WikiApi
 
 import flask.views
 import wordnikbase
 import version
 import urllib2
 import simplejson
-import time
 
 class Search(flask.views.MethodView):  # Class for searching
 
@@ -18,6 +18,14 @@ class Search(flask.views.MethodView):  # Class for searching
         searchQuery = request.form['searchQuery']
 
         searchqueryProcessed = searchQuery
+
+        wiki = WikiApi({})
+
+        wiki = WikiApi({ 'locale' : 'en' }) # Top specify your locale, 'en' is default
+
+        wikiResults = wiki.find('TotalBiscuit')
+
+        wikiArticle = wiki.get_article(wikiResults[0])
 
         definitionSearch = wordnikbase.wordApi.getDefinitions(searchqueryProcessed,
                                                         partOfSpeech='',
@@ -54,4 +62,5 @@ class Search(flask.views.MethodView):  # Class for searching
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
                                 definitionResults =  definitionSearch[0].text,
+                                wikipediaResults = wikiArticle.summary,
                                 imageResults = urllist[0])
