@@ -16,7 +16,7 @@
 
                 <p> </p>
 
-                <p> Version {{ version }}: Added maps and images </p>
+                <p> Version {{ version }}: Added maps and text editor </p>
 
             </div>
 
