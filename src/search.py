@@ -23,7 +23,7 @@ class Search(flask.views.MethodView):  # Class for searching
 
         wiki = WikiApi({ 'locale' : 'en' }) # Top specify your locale, 'en' is default
 
-        wikiResults = wiki.find('TotalBiscuit')
+        wikiResults = wiki.find(searchqueryProcessed)
 
         wikiArticle = wiki.get_article(wikiResults[0])
 
@@ -62,5 +62,5 @@ class Search(flask.views.MethodView):  # Class for searching
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
                                 definitionResults =  definitionSearch[0].text,
-                                wikipediaResults = wikiArticle.summary,
+                                wikipediaResults = wikiArticle.summary.decode('utf-8'),
                                 imageResults = urllist[0])
