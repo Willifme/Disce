@@ -6,58 +6,57 @@
 
         <div class="container">
 
-            <div class="hero-unit " align="left"">
+            <div class="hero-unit">
 
-                <p> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce" href="" align="left"> </a>
-
-                Disce
-
-                <form action="" method="POST" class="navbar-form" align="left">
+                <form action="" method="POST" class="navbar-form" align="right">
 
                         <input type="text" name="searchQuery" class="span2 pull-left" placeholder="Search here" autocomplete="off" list="suggestions">
 
                         <input type="submit" value="Search" class="btn">
 
-                </form> </p>
-
-            </div>
-
-        </div>
-
-        <div class="container">
-
-            <div class="hero-unit">
-
+                </form>
 
                 <h1>Results  for {{ searchQuery }}</h1>
 
                 <p> <p>
 
-                <p> Definition: {{ definitionResults }} </p>
+               <div class="tabbable"> <!-- Only required for left/right tabs -->
 
-                <p> <p>
+                   <ul class="nav nav-tabs">
 
-                <p> Image results: </p>
+                       <li class="active"> <a href="#infotab" data-toggle="tab">Information </a> <li>
 
-                <p> <img src="{{ imageResults }}" heigh="200" width="300" title="{{ searchQuery }}"> </p>
+                       <li> <a href="#imgtab" data-toggle="tab"> Images </a> <li>
 
-                <p> </p>
+                       <li> <a href="#txteditortab" data-toggle="tab"> Text Editor </a> <li>
 
-                <p> Text Editor: </p>
+                    </ul>
 
-                <p> <div class="btn-toolbar">
+                    <div class="tab-content">
 
-                        <div class="btn-group">
+                        <div class="tab-pane active" id="infotab">
 
-                            <button class="btn"> Edit in realtime (Requires Google Account and friends) </button>
+                            <p>  Definition: {{ definitionResults }} </p>
 
-                            <button class="btn"> Edit by you're self </button>
+                            <p>  Wikipedia article summary: {{ wikipediaResults }}</p>
+
+                        </div>
+
+                        <div class="tab-pane" id="imgtab">
+
+                            <p>  <img src="{{ imageResults }}" heigh="200" width="300" title="{{ searchQuery }}"> </p>
+
+                        </div>
+
+                        <div class="tab-pane" id="txteditortab">
+
+                            <p> Coming soon... </p>
 
                         </div>
 
                     </div>
 
-                </p>
+                </div>
 
             </div>
 
