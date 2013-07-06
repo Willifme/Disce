@@ -1,9 +1,16 @@
 from wikiapi import WikiApi
 
-wiki = WikiApi({})
+class WikiQueryResults():
 
-wiki = WikiApi({ 'locale' : 'en' }) # Top specify your locale, 'en' is default
+    @staticmethod
+    def wikiqueryresults(searchQuery):
 
-wikiSearch = wiki.find('Eiffel Tower')
+        wiki = WikiApi({})
 
-wikiArticle = wiki.get_article(wikiSearch[0])
+        wiki = WikiApi({ 'locale' : 'en' }) # Top specify your locale, 'en' is default
+
+        wikiSearch = wiki.find(searchQuery)
+
+        wikiArticle = wiki.get_article(wikiSearch[0])
+
+        return wikiArticle.summary

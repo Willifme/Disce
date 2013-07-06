@@ -1,11 +1,15 @@
 from flask import render_template, request
-from wikiapi import WikiApi
 
 import flask.views
 import wordnikbase
 import version
 import urllib2
 import simplejson
+import sys
+
+sys.path.append('API')  # for importing modules in other folders
+
+from Disce import QueryResults
 
 class Search(flask.views.MethodView):  # Class for searching
 
@@ -19,13 +23,7 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchQuery
 
-        wiki = WikiApi({})
-
-        wiki = WikiApi({ 'locale' : 'en' }) # Top specify your locale, 'en' is default
-
-        wikiResults = wiki.find(searchqueryProcessed)
-
-        wikiArticle = wiki.get_article(wikiResults[0])
+        QueryResults.queryresults('dog')
 
         definitionSearch = wordnikbase.wordApi.getDefinitions(searchqueryProcessed,
                                                         partOfSpeech='',
@@ -39,6 +37,16 @@ class Search(flask.views.MethodView):  # Class for searching
 
         url = ('https://ajax.googleapis.com/ajax/services/search/images?' +
               'v=1.0&q=' + searchqueryProcessedreplaced + '&imgsz=small|medium|large')
+
+        apiurl = 'https://127.0.0.1:5000/api/v1.0/' + searchqueryProcessedreplaced
+
+        apiRequest = urllib2.Request(url)
+
+        apiResponse = urllib2.urlopen(apiRequest)
+
+        apiResults = simplejson.load(apiResponse)
+
+        apiData = apiResults['results']
 
         imageRequest = urllib2.Request(url, None, {'Referer': 'localhost'})
 
@@ -61,7 +69,7 @@ class Search(flask.views.MethodView):  # Class for searching
 
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
-                                definitionResults =  definitionSearch[0].text,
-                                wikipediaResults = wikiArticle.summary.decode('utf-8'),
+                                definitionResults =  imageHits['imageUrl'],
+                                wikipediaResults = 'test',
                                 imageResults = urllist[0],
-				version = version.version)
+                                version = version.version)
