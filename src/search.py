@@ -6,11 +6,6 @@ import wordnikbase
 import version
 import urllib2
 import simplejson
-import sys
-
-sys.path.append('API')  # for importing modules in other folders
-
-from Disce import QueryResults
 
 class Search(flask.views.MethodView):  # Class for searching
 
@@ -24,22 +19,12 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchQuery
 
-   #     QueryResults.get('dog')
-
-        definitionSearch = wordnikbase.wordApi.getDefinitions(searchqueryProcessed,
-                                                        partOfSpeech='',
-                                                        sourceDictionaries='all',
-                                                        limit=200)
-
-
-        searchqueryProcessedreplaced = searchqueryProcessed
-
-        searchqueryProcessedreplaced = searchqueryProcessedreplaced.replace(" ", "%20")
+        searchqueryProcessed = searchqueryProcessed.replace(" ", "%20")
 
   #      url = ('https://ajax.googleapis.com/ajax/services/search/images?' +
    #           'v=1.0&q=' + searchqueryProcessedreplaced + '&imgsz=small|medium|large')
 
-        apiUrl = 'http://127.0.0.1:4000/api/v1.0/' + searchqueryProcessedreplaced
+        apiUrl = 'http://127.0.0.1:4000/api/v1.0/' + searchqueryProcessed
 
         apiRequest = urllib2.Request(apiUrl)
 
@@ -65,24 +50,7 @@ class Search(flask.views.MethodView):  # Class for searching
 
             apiList.append(wikiResults)
 
-    #    imageRequest = urllib2.Request(url, None, {'Referer': 'localhost'})
-
-     #   imageResponse = urllib2.urlopen(imageRequest)
-
-      #  imageResults = simplejson.load(imageResponse)
-
-       # data = imageResults['results']
-
- #       imagehits = data['results']
-
-        #for h in data:
-
-         #   urllist = []
-
-          #  test = h['imageUrl']
-
-           # urllist.append(test) # TODO: Get more than one image
-
+        searchqueryProcessed = searchqueryProcessed.replace("%20", " ")
 
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
