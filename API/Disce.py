@@ -1,16 +1,24 @@
-from flask import Flask, jsonify
+from flask import Flask
+from flask.ext import restful
 from WikipediaBase import WikiQueryResults
 from GoogleImagesBase import GoogleImageResults
 
 import WordnikBase
 
 app = Flask(__name__)
+api = restful.Api(app)
 
-class QueryResults():
+class HelloWorld(restful.Resource):
+    def get(self, searchQuery):
+        return {'hello' : searchQuery}
+
+api.add_resource(HelloWorld, '/<string:searchQuery>')
+
+class QueryResults(restful.Resource):
 
     @staticmethod
-    @app.route('/api/v1.0/<string:searchQuery>', methods = ['GET'])
-    def queryresults(searchQuery):
+#    @app.route('/api/v1.0/<string:searchQuery>', methods = ['GET'])
+    def get(searchQuery):
 
         results = [
 
@@ -27,7 +35,10 @@ class QueryResults():
 
         print results
 
-        return jsonify( { 'results' : results } )
+        return { 'results' : results }
+
+
+api.add_resource(QueryResults, "/api/v1.0/<string:searchQuery>")
 
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)
