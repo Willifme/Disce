@@ -11,7 +11,6 @@ api = restful.Api(app)
 class QueryResults(restful.Resource):
 
     @staticmethod
-#    @app.route('/api/v1.0/<string:searchQuery>', methods = ['GET'])
     def get(searchQuery):
 
 
@@ -47,4 +46,4 @@ class QueryResults(restful.Resource):
 api.add_resource(QueryResults, "/api/v1.0/<string:searchQuery>")
 
 if __name__ == '__main__':
-    app.run(debug = True, port = 4000)
+    app.run(debug = True, port = 4000, host = '0.0.0.0')

@@ -21,9 +21,6 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchqueryProcessed.replace(" ", "%20")
 
-  #      url = ('https://ajax.googleapis.com/ajax/services/search/images?' +
-   #           'v=1.0&q=' + searchqueryProcessedreplaced + '&imgsz=small|medium|large')
-
         apiUrl = 'http://127.0.0.1:4000/api/v1.0/' + searchqueryProcessed
 
         apiRequest = urllib2.Request(apiUrl)
