@@ -20,20 +20,32 @@ class QueryResults(restful.Resource):
 #    @app.route('/api/v1.0/<string:searchQuery>', methods = ['GET'])
     def get(searchQuery):
 
+
+
+        try:
+
+            wordnikResults = WordnikBase.wordApi.getDefinitions(searchQuery, partOfSpeech='',  sourceDictionaries='all', limit=200)[0].text
+
+            wikiResults = WikiQueryResults.wikiqueryresults(searchQuery)
+
+        except TypeError or IndexError:
+
+            wordnikResults = "No definition found"
+
+            wikiResults = "No Wikipedia results"
+
         results = [
 
             {
 
                 "imageUrl" : GoogleImageResults.googleimageresults(searchQuery),
 
-                "wordnikResults" : WordnikBase.wordApi.getDefinitions(searchQuery, partOfSpeech='',  sourceDictionaries='all', limit=200)[0].text,
+                "wordnikResults" : wordnikResults,
 
-                "wikiResults" :  WikiQueryResults.wikiqueryresults(searchQuery)
+                "wikiResults" :  wikiResults
             }
 
     ]
-
-        print results
 
         return { 'results' : results }
 
