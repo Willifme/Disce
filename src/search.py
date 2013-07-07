@@ -1,4 +1,5 @@
 from flask import render_template, request
+from flask.ext import restful
 
 import flask.views
 import wordnikbase
@@ -23,7 +24,7 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchQuery
 
-        QueryResults.queryresults('dog')
+   #     QueryResults.get('dog')
 
         definitionSearch = wordnikbase.wordApi.getDefinitions(searchqueryProcessed,
                                                         partOfSpeech='',
@@ -35,41 +36,57 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessedreplaced = searchqueryProcessedreplaced.replace(" ", "%20")
 
-        url = ('https://ajax.googleapis.com/ajax/services/search/images?' +
-              'v=1.0&q=' + searchqueryProcessedreplaced + '&imgsz=small|medium|large')
+  #      url = ('https://ajax.googleapis.com/ajax/services/search/images?' +
+   #           'v=1.0&q=' + searchqueryProcessedreplaced + '&imgsz=small|medium|large')
 
-        apiurl = 'https://127.0.0.1:5000/api/v1.0/' + searchqueryProcessedreplaced
+        apiUrl = 'http://127.0.0.1:4000/api/v1.0/' + searchqueryProcessedreplaced
 
-        apiRequest = urllib2.Request(url)
+        apiRequest = urllib2.Request(apiUrl)
 
         apiResponse = urllib2.urlopen(apiRequest)
 
         apiResults = simplejson.load(apiResponse)
 
-        apiData = apiResults['results']
+        apiData = apiResults["results"]
 
-        imageRequest = urllib2.Request(url, None, {'Referer': 'localhost'})
+        for i in apiData:
 
-        imageResponse = urllib2.urlopen(imageRequest)
+            apiList = []
 
-        imageResults = simplejson.load(imageResponse)
+            imageUrl = i["imageUrl"]
 
-        data = imageResults['responseData']
+            wordnikResults = i["wordnikResults"]
 
-        imagehits = data['results']
+            wikiResults = i["wikiResults"]
 
-        for h in imagehits:
+            apiList.append(imageUrl)
 
-            urllist = []
+            apiList.append(wordnikResults)
 
-            test = h['url']
+            apiList.append(wikiResults)
 
-            urllist.append(test) # TODO: Get more than one image
+    #    imageRequest = urllib2.Request(url, None, {'Referer': 'localhost'})
+
+     #   imageResponse = urllib2.urlopen(imageRequest)
+
+      #  imageResults = simplejson.load(imageResponse)
+
+       # data = imageResults['results']
+
+ #       imagehits = data['results']
+
+        #for h in data:
+
+         #   urllist = []
+
+          #  test = h['imageUrl']
+
+           # urllist.append(test) # TODO: Get more than one image
 
 
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
-                                definitionResults =  imageHits['imageUrl'],
-                                wikipediaResults = 'test',
-                                imageResults = urllist[0],
+                                definitionResults =  apiList[1],
+                                wikipediaResults = apiList[2],
+                                imageResults = apiList[0],
                                 version = version.version)

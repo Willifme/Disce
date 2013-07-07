@@ -8,12 +8,6 @@ import WordnikBase
 app = Flask(__name__)
 api = restful.Api(app)
 
-class HelloWorld(restful.Resource):
-    def get(self, searchQuery):
-        return {'hello' : searchQuery}
-
-api.add_resource(HelloWorld, '/<string:searchQuery>')
-
 class QueryResults(restful.Resource):
 
     @staticmethod
