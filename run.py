@@ -5,6 +5,7 @@ import sys
 sys.path.append('src')  # for importing modules in other folders
 
 from search import Search  # the 'search' module is in the src folder
+
 from changelog import Changelog # the 'changelog' module is in the src folder
 
 app = Flask(__name__)
