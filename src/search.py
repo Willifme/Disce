@@ -1,11 +1,12 @@
 from flask import render_template, request
-from flask.ext import restful
 
 import flask.views
-import wordnikbase
 import version
-import urllib2
-import simplejson
+import sys
+
+sys.path.append('API')  # for importing modules in other folders
+
+import disce
 
 class Search(flask.views.MethodView):  # Class for searching
 
@@ -21,37 +22,17 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchqueryProcessed.replace(" ", "%20")
 
-        apiUrl = 'http://127.0.0.1:4000/api/v1.0/' + searchqueryProcessed
-
-        apiRequest = urllib2.Request(apiUrl)
-
-        apiResponse = urllib2.urlopen(apiRequest)
-
-        apiResults = simplejson.load(apiResponse)
-
-        apiData = apiResults["results"]
-
-        for i in apiData:
-
-            apiList = []
-
-            imageUrl = i["imageUrl"]
-
-            wordnikResults = i["wordnikResults"]
-
-            wikiResults = i["wikiResults"]
-
-            apiList.append(imageUrl)
-
-            apiList.append(wordnikResults)
-
-            apiList.append(wikiResults)
+        disce.getResults("http://127.0.0.1:4000/api/v1.0/", searchqueryProcessed)
 
         searchqueryProcessed = searchqueryProcessed.replace("%20", " ")
 
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
-                                definitionResults =  apiList[1],
-                                wikipediaResults = apiList[2],
-                                imageResults = apiList[0],
-                                version = version.version)
+                                imageResults =  disce.apiList[0],
+                                definitionResults = disce.apiList[1],
+                                wikipediaResults = disce.apiList[2],
+                                version = disce.apiList)
+
+        del disce.apiList[0]
+        del disce.apiList[1]
+        del disce.apiList[2]
