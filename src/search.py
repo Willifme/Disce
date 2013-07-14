@@ -4,7 +4,7 @@ import flask.views
 import version
 import sys
 
-sys.path.append('API')  # for importing modules in other folders
+sys.path.append('API/python')  # for importing modules in other folders
 
 import disce
 
@@ -31,8 +31,4 @@ class Search(flask.views.MethodView):  # Class for searching
                                 imageResults =  disce.apiList[0],
                                 definitionResults = disce.apiList[1],
                                 wikipediaResults = disce.apiList[2],
-                                version = disce.apiList)
-
-        del disce.apiList[0]
-        del disce.apiList[1]
-        del disce.apiList[2]
+                                version = version.version)
