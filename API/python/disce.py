@@ -9,8 +9,6 @@ def getResults(apiUrl, searchQuery):
 
     apiResponse = urllib2.urlopen(apiRequest)
 
-    print "User searched for: " + apiUrl + searchQuery
-
     apiResults = simplejson.load(apiResponse)
 
     apiData = apiResults['results']
@@ -28,3 +26,9 @@ def getResults(apiUrl, searchQuery):
         apiList.append(wordnikResults)
 
         apiList.append(wikiResults)
+
+    apiList[0] = imageUrl # Removes the previous entry so this list does not exponentially expand every time something is searched
+
+    apiList[1] = wordnikResults # Removes the previous entry so this list does not exponentially expand every time something is searched
+
+    apiList[2] = wikiResults # Removes the previous entry so this list does not exponentially expand every time something is searched
