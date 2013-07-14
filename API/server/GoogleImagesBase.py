@@ -30,4 +30,10 @@ class GoogleImageResults():
 
             urllist.append(test) # TODO: Get more than one image
 
-        return urllist[0]
+        try:
+
+            return urllist[0]
+
+        except UnboundLocalError:
+
+            return "No Google Images results found"
