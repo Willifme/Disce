@@ -26,9 +26,9 @@ class GoogleImageResults():
 
             urllist = []
 
-            test = h['url']
+            imageUrl = h['url']
 
-            urllist.append(test) # TODO: Get more than one image
+            urllist.append(imageUrl) # TODO: Get more than one image
 
         try:
 
