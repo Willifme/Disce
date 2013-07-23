@@ -8,13 +8,17 @@
 
             <div class="hero-unit">
 
-                <form action="" method="POST" class="navbar-form" align="right">
+                {{ form.hidden_tag() }}
 
-                        <input type="text" name="searchQuery" class="span2 pull-left" placeholder="Search here" autocomplete="off" list="suggestions">
 
-                        <input type="submit" value="Search" class="btn">
+                        <form action="{{ url_for('results') }}"class="navbar-form" align="right" method="GET">
 
-                </form>
+                            {{ form.searchQuery(placeholder="Search here") }}
+
+                             <input type="submit" value="Search" class="btn">
+
+                    </form>
+
 
                 <h1>Results  for {{ searchQuery }}</h1>
 
