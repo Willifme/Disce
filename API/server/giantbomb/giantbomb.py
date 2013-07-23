@@ -47,7 +47,6 @@ class Api:
         if type(id).__name__ != 'int':
             id = id.id
         game = simplejson.load(urllib2.urlopen(self.base_url + "/game/%s/?api_key=%s&field_list=id,name,deck,image,images,genres,original_release_date,platforms,videos,api_detail_url,site_detail_url&format=json" % (id, self.api_key)))
-        print game
         return Game.NewFromJsonDict(self.checkResponse(game))
 
     def getGames(self, plat, offset=0):
