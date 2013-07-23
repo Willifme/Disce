@@ -12,6 +12,6 @@ test = giantBomb.getGame(results[0])
 
 for i in test.deck:
 
-    print str(i.decode)
+    print i
 
 #print test
