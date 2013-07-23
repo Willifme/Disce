@@ -3,7 +3,9 @@ import simplejson
 
 apiList = []
 
-def getResults(apiUrl, searchQuery):
+def getResults(searchQuery):
+
+    apiUrl = "http://127.0.0.1:4000/api/v1.0/"
 
     apiRequest = urllib2.Request(apiUrl + searchQuery)
 
