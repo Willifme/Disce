@@ -3,4 +3,3 @@ ENV
 *.idea
 *.swo
 *.swp
-config.py
