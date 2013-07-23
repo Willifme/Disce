@@ -1,4 +1,5 @@
 from flask import render_template, request, Request
+from forms import SearchForm
 
 import flask.views
 import version
@@ -16,17 +17,19 @@ class Search(flask.views.MethodView):  # Class for searching
 
         searchqueryProcessed = searchqueryProcessed.replace(" ", "%20")
 
-        disce.getResults("http://127.0.0.1:4000/api/v1.0/", searchqueryProcessed)
+        disce.getResults(searchqueryProcessed)
 
         searchqueryProcessed = searchqueryProcessed.replace("%20", " ")
 
-        print searchqueryProcessed
-
         return searchqueryProcessed
 
-    def post(self, searchQuery): # The page for the results
+    def post(self): # The page for the results
+
+        searchQuery = request.form['searchQuery']
 
         searchqueryProcessed = self.searchDisce(searchQuery)
+
+        print "test"
 
         return render_template('results.html',
                                 searchQuery = searchqueryProcessed,
@@ -35,11 +38,20 @@ class Search(flask.views.MethodView):  # Class for searching
                                 wikipediaResults = disce.apiList[2],
                                 version = version.version)
 
-    def get(self, searchQuery):
+    def get(self):
+
+        print "test"
+
+        form = SearchForm()
+
+        searchQuery = request.args.get('searchQuery')
 
         searchqueryProcessed = self.searchDisce(searchQuery)
 
+        searchqueryProcessed = searchqueryProcessed.replace("?", "")
+
         return render_template('results.html',
+                                form = form,
                                 searchQuery = searchqueryProcessed,
                                 imageResults =  disce.apiList[0],
                                 definitionResults = disce.apiList[1],
