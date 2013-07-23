@@ -1,2 +1,5 @@
 ENV
 *.pyc
+*.idea
+*.swo
+*.swp
