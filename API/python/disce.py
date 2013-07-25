@@ -5,7 +5,11 @@ apiList = []
 
 def getResults(searchQuery):
 
-    apiUrl = "http://127.0.0.1:4000/api/v1.0/"
+    searchQuery = searchQuery.replace(" ", "%20")
+
+    frontendsearchQuery = searchQuery.replace("%20", " ")
+
+    apiUrl = "http://127.0.0.1:4000/"
 
     apiRequest = urllib2.Request(apiUrl + searchQuery)
 
@@ -34,3 +38,5 @@ def getResults(searchQuery):
     apiList[1] = wordnikResults # Removes the previous entry so this list does not exponentially expand every time something is searched
 
     apiList[2] = wikiResults # Removes the previous entry so this list does not exponentially expand every time something is searched
+
+    return frontendsearchQuery
