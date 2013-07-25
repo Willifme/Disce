@@ -11,9 +11,9 @@
                 {{ form.hidden_tag() }}
 
 
-                        <form action="{{ url_for('results') }}"class="navbar-form" align="right" method="GET">
+                        <form action="{{ url_for('results') }}"class="navbar-form input-append pull-right" method="GET">
 
-                            {{ form.searchQuery(placeholder="Search here") }}
+                            {{ form.searchQuery(class_="input-large", placeholder="Search here") }}
 
                              <input type="submit" value="Search" class="btn">
 
@@ -24,31 +24,21 @@
 
                 <p> <p>
 
-               <div class="tabbable"> <!-- Only required for left/right tabs -->
 
-                   <ul class="nav nav-tabs">
-
-                       <li class="active"> <a href="#infotab" data-toggle="tab">Information </a> <li>
-
-                       <li> <a href="#imgtab" data-toggle="tab"> Images </a> <li>
-
-                       <li> <a href="#txteditortab" data-toggle="tab"> Text Editor </a> <li>
-
-                    </ul>
 
                     <div class="tab-content">
 
-                        <div class="tab-pane active" id="infotab">
+                        <div class="tab-pane active" id="infotab" name="infotab" name="test">
 
-                            <p>  Definition: {{ definitionResults }} </p>
+                            <p> {{ resultsPlace1 }} </p>
 
-                            <p>  Wikipedia article summary: {{ wikipediaResults }}</p>
+                            <p> {{ resultsPlace2 }} </p>
+
+                            <p>  <img src="{{ imageresultsPlace1 }}" heigh="200" width="300" title="{{ searchQuery }}"> </p>
 
                         </div>
 
                         <div class="tab-pane" id="imgtab">
-
-                            <p>  <img src="{{ imageResults }}" heigh="200" width="300" title="{{ searchQuery }}"> </p>
 
                         </div>
 
