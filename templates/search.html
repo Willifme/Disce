@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+
+{% block titlesuffix %} Search {% endblock %}
+
+{% block span %}
+
+      <div class="container">
+
+            <div class="hero-unit">
+
+                <h1>Disce Search</h1>
+
+                {{ form.hidden_tag() }}
+
+
+                <h2>
+
+                    <form action="{{ url_for('results') }}" method="GET">
+
+                        <center> <div> {{  form.searchQuery(placeholder="Search here", class_="input-block-level") }} </div> </center>
+
+                        <center> <div> <input type="submit" value="Search" class="btn" images="true"> </div> </center>
+
+                    </form>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+{% endblock %}
+
+{%  block bottomextras %} <small> You got here by typing in the URL didn't you? Do not lie to me!</small> {% endblock %}
