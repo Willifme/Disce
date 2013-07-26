@@ -24,12 +24,12 @@ app.add_url_rule('/changelog',
                 view_func=Changelog.as_view('changelog'),
                 methods=['GET'])
 
-app.add_url_rule('/results',
+app.add_url_rule('/search',
                 view_func=results.MainResults.as_view('results'),
                 methods=['GET', 'POST'])
 
-app.add_url_rule('/results/<searchQuery>',
-                 view_func=results.DirectURLInput.as_view('optionalresutls'),
+app.add_url_rule('/search/<searchQuery>',
+                 view_func=results.DirectURLInput.as_view('optionalresults'),
                  methods=['GET', 'POST'])
 
 if __name__ == '__main__':
