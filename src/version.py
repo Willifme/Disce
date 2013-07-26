@@ -1,1 +1,1 @@
-version = "alpha " + str(0.5)
+version = "alpha " + str(0.6)
