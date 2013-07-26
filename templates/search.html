@@ -2,6 +2,8 @@
 
 {% block titlesuffix %} Search {% endblock %}
 
+{% block searchactive %} "active" {% endblock %}
+
 {% block span %}
 
       <div class="container">
@@ -17,9 +19,10 @@
 
                     <form action="{{ url_for('results') }}" method="GET">
 
-                        <center> <div> {{  form.searchQuery(placeholder="Search here", class_="input-block-level") }} </div> </center>
 
-                        <center> <div> <input type="submit" value="Search" class="btn" images="true"> </div> </center>
+                            <center> {{  form.searchQuery(placeholder="Search here", class_="input-block-level") }} </center>
+
+                        <center> <input type="submit" value="Search" class="btn" images="true">  </center>
 
                     </form>
 
