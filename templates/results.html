@@ -2,6 +2,8 @@
 
 {% block title %} {{ searchQuery }} - {% endblock %} {% block titlesuffix %} Search {% endblock %}
 
+{% block searchactive %} "active" {% endblock %}
+
 {% block span %}
 
         <div class="container">
@@ -11,20 +13,18 @@
                 {{ form.hidden_tag() }}
 
 
-                        <form action="{{ url_for('results') }}"class="navbar-form input-append pull-right" method="GET">
+                        <form action="{{ url_for('results') }}"class="navbar-form pull-right" method="GET">
 
                             {{ form.searchQuery(class_="input-large", placeholder="Search here") }}
 
                              <input type="submit" value="Search" class="btn">
 
-                    </form>
+                        </form>
 
 
                 <h1>Results  for {{ searchQuery }}</h1>
 
                 <p> <p>
-
-
 
                     <div class="tab-content">
 
