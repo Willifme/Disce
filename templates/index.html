@@ -4,35 +4,30 @@
 
 {% block span %}
 
-  <div class="container-fluid mainpagecentre">
+  <div class="container mainpagecentre">
 
-        <div class="row-fluid">
+        <div class="row">
 
-            <div class="span12">
+            <center> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce"> </a> </center>
 
-                    <center> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce"> </a> </center>
-
-                    <center>  <b> Welcome to Disce version {{ version }} </b> </center>
+            <center>  <b> Welcome to Disce version {{ version }} </b> </center>
 
 
-                    {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
 
 
-                        <form action="{{ url_for('results') }}" method="GET">
+            <form action="{{ url_for('results') }}" method="GET">
 
-                            <center> <div>{{ form.searchQuery(class_="input-large", placeholder="Search here") }} </div> </center>
+                <center> <div> {{ form.searchQuery(class_="input-xlarge", placeholder="Search here") }} </div> </center>
 
-                            <center> <div> <input type="submit" value="Search" class="btn"> </div> </center>
+                <center> <div> <input type="submit" value="Search" class="btn"> </div> </center>
 
-                    </form>
-
-            </div>
+            </form>
 
         </div>
 
-    </div>
+  </div>
 
-</div>
 
     <datalist id="suggestions">
 
