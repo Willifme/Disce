@@ -1,6 +1,6 @@
-ENV
 *.pyc
 *.idea
 *.swo
 *.swp
-flatstrap/**/*
+.config.py
+**/flatstrap
