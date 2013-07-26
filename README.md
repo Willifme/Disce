@@ -1,20 +1,22 @@
 Disce
 ==============
 
-Disce is a project that aims to consolidate information.
+Disce is a project that aims to consolidate information this will include Wikipedia results, Wordnik results and Google Images.
 
 
-Technology Used for Flask version
+How to run Disce
 --------------
-1. Flask a web microframework - The framework for the core of the web app
-2. Twitter Bootstrap Theming for the HTML
 
-Technology Used for Google App Engine version
---------------
-1. Google App Engine - Hosting a core of the web app.
-3. Ventus - A forked project that creates windows (similar to a desktop environment) in Javascript, CSS and HTML 5.
+    Requirements for Disce
+    --------------
+    1. [Flask](http://flask.pocoo.org/) is required both for the front and backend
+    2. [Flask-restful](http://flask.pocoo.org/) is needed to serve the information
+    3. [Flat UI Kit](http://designmodo.github.io/Flat-UI/) is placed in static under the 'flatstrap'
+    4. Server.py required you to have the [Wordnik API](https://github.com/wordnik/wordnik-python)
+    5. Server.py required you to have the [Wiki Api](https://github.com/richardasaurus/wiki-api)
 
+    How to run Disce
+    --------------
 
-API's Used
---------------
-- Wordnik - For definitions of words.
+    1. First you need to run the server this is in the API/server and located at server.py
+    2. Then run run.py in the base directory.
