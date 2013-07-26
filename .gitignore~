@@ -1,6 +1,0 @@
-ENV
-*.pyc
-*.idea
-*.swo
-*.swp
-config.py
