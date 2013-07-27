@@ -32,8 +32,8 @@ class GoogleImageResults():
 
         try:
 
-            return urllist[0]
+            return urllist[0]#
 
-        except UnboundLocalError:
+        except:
 
             return "No Google Images results found"
