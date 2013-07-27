@@ -12,15 +12,11 @@
 
             <center>  <b> Welcome to Disce version {{ version }} </b> </center>
 
+            <form action="/search/" method="GET" onsubmit="return false;">
 
-            {{ form.hidden_tag() }}
+                <center> <div> <input type="search" name="q" placeholder="Search here" class="input-xlarge" required/> </div> </center>
 
-
-            <form action="{{ url_for('results') }}" method="GET">
-
-                <center> <div> {{ form.searchQuery(class_="input-xlarge", placeholder="Search here") }} </div> </center>
-
-                <center> <div> <input type="submit" value="Search" class="btn"> </div> </center>
+                <center> <div> <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;"> </div> </center>
 
             </form>
 

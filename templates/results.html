@@ -10,17 +10,13 @@
 
             <div class="hero-unit">
 
-                {{ form.hidden_tag() }}
+                <form action="/search/" method="GET" class="navbar-form pull-right" onsubmit="return false;">
 
+                    <input type="search" name="q" placeholder="Search here" required class="input-large"/>
 
-                        <form action="{{ url_for('results') }}"class="navbar-form pull-right" method="GET">
+                    <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;">
 
-                            {{ form.searchQuery(class_="input-large", placeholder="Search here") }}
-
-                             <input type="submit" value="Search" class="btn">
-
-                        </form>
-
+                </form>
 
                 <h1>Results  for {{ searchQuery }}</h1>
 
@@ -30,11 +26,13 @@
 
                         <div class="tab-pane active" id="infotab" name="infotab" name="test">
 
-                            <p> {{ resultsPlace1 }} </p>
-
                             <p> {{ resultsPlace2 }} </p>
 
-                            <p>  <img src="{{ imageresultsPlace1 }}" heigh="200" width="300" title="{{ searchQuery }}"> </p>
+                            <p> {{ resultsPlace3 }} </p>
+
+                            <p> {{ resultsPlace4 }}</p>
+
+                            <p> <center> <img src="{{ resultsPlace1 }}" heigh="200" width="300" title="{{ searchQuery }}" onerror="this.style.display='none'"> </center> </p>
 
                         </div>
 

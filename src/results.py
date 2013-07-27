@@ -1,5 +1,4 @@
 from flask import render_template, request
-from forms import SearchForm
 
 import flask.views
 import version
@@ -13,14 +12,12 @@ class DirectURLInput(flask.views.MethodView):
 
     def get(self, searchQuery):
 
-        form = SearchForm()
-
         return render_template('results.html',
-                                form = form,
                                 searchQuery = disce.getResults(searchQuery),
-                                imageresultsPlace1 = disce.apiList[0],
-                                resultsPlace1 = 'Definition: ' +  disce.apiList[1],
-                                resultsPlace2 = 'Wikipedia article summary: ' + disce.apiList[2],
+                                resultsPlace1 = disce.apiList[0],
+                                resultsPlace2 = 'Definition: ' + disce.apiList[1],
+                                resultsPlace3 = 'Wikipedia article summary: ' + disce.apiList[2],
+                                resultsPlace4 = 'Google Images results: ',
                                 version = version.version)
 
 class MainResults(flask.views.MethodView):  # Class for searching
@@ -37,21 +34,19 @@ class MainResults(flask.views.MethodView):  # Class for searching
 
     def get(self):
 
-        form = SearchForm()
-
         try:
 
             searchQuery = request.args.get('searchQuery')
 
             return render_template('results.html',
-                                    form = form,
                                     searchQuery = disce.getResults(searchQuery),
-                                    imageresultsPlace1 = disce.apiList[0],
-                                    resultsPlace1 = 'Definition: ' +  disce.apiList[1],
-                                    resultsPlace2 = 'Wikipedia article summary: ' + disce.apiList[2],
+                                    resultsPlace1 = disce.apiList[0],
+                                    resultsPlace2 = 'Definition: ' +  disce.apiList[1],
+                                    resultsPlace3 = 'Wikipedia article summary: ' + disce.apiList[2],
+                                    resultsPlace4 = 'Google Images results: ',
+                                    cleanURL = 'http://0.0.0.0:5000/search/' + searchQuery,
                                     version = version.version)
 
         except AttributeError:
 
-            return render_template('search.html',
-                                   form = form)
+            return render_template('search.html')

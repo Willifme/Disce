@@ -12,17 +12,14 @@
 
                 <h1>Disce Search</h1>
 
-                {{ form.hidden_tag() }}
-
-
                 <h2>
 
-                    <form action="{{ url_for('results') }}" method="GET">
 
+                     <form action="/search/" method="GET" onsubmit="return false;">
 
-                            <center> {{  form.searchQuery(placeholder="Search here", class_="input-block-level") }} </center>
+                        <center> <div> <input type="search" name="q" placeholder="Search here" class="input-block-level" required/> </div> </center>
 
-                        <center> <input type="submit" value="Search" class="btn" images="true">  </center>
+                        <center> <div> <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;"> </div> </center>
 
                     </form>
 
