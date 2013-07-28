@@ -1,0 +1,7 @@
+*.pyc
+*.idea
+*.swo
+*.swp
+.config.py
+.how to run.txt
+flatstrap/

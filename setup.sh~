@@ -1,0 +1,8 @@
+wget https://github.com/designmodo/Flat-UI/archive/master.zip
+unzip master.zip
+mv  Flat-UI-master flatstrap
+sudo mv flatstrap/ static/
+sudo apt-get install python-pip
+sudo pip install virtualenv
+virtualenv venv
+pip install flask
