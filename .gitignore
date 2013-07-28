@@ -4,4 +4,5 @@
 *.swp
 .config.py
 .how to run.txt
+venv/
 flatstrap/
