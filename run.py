@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 
 from flask import Flask
@@ -16,6 +18,10 @@ app = Flask(__name__)
 
 app.config.from_object('config')
 
+@app.route('/', subdomain='egg')
+def test(self):
+    return "test"
+
 app.add_url_rule('/',
                  view_func=Index.as_view('index'),
                  methods=['GET', 'POST'])
@@ -33,4 +39,5 @@ app.add_url_rule('/search/<searchQuery>',
                  methods=['GET', 'POST'])
 
 if __name__ == '__main__':
+
     app.run(debug=True, host='0.0.0.0')
