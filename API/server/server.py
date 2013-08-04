@@ -39,7 +39,8 @@ class QueryResults(restful.Resource):
                 "wikiResults" :  wikiResults
             }
 
-    ]
+        ]
+
         return { "results" : results }
 
 api.add_resource(QueryResults, "/<string:searchQuery>")
