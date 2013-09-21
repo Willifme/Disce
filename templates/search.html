@@ -10,16 +10,16 @@
 
             <div class="hero-unit">
 
-                <h1>Disce Search</h1>
+		<h1 class="center">Disce Search</h1>
 
                 <h2>
 
 
                      <form action="/search/" method="GET" onsubmit="return false;">
 
-                        <center> <div> <input type="search" name="q" placeholder="Search here" class="input-block-level" required/> </div> </center>
+                        <div> <input type="search" name="searchQuery" placeholder="Search here" class="center form-control" required/> </div>
 
-                        <center> <div> <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;"> </div> </center>
+			<center> <div> <input type="submit" value="Search" style="text-align:center;" class="btn"  onclick="window.location.href=this.form.action + this.form.searchQuery.value;"> </div> <center> <!-- CENTER WHY YOU NO WORK?!?! -->
 
                     </form>
 

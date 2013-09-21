@@ -13,6 +13,7 @@ class Index(flask.views.MethodView): # Class for index
                                 version = version.version)
 
     def post(self):
+        
         return render_template('index.html',
                                 version = version.version)
 

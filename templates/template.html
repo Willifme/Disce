@@ -14,20 +14,24 @@
 
       <!--  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" />
 
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.css') }}" />-->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.css') }}" />
 
 
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='flatstrap/bootstrap/css/bootstrap.css') }}" />
 
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='flatstrap/css/flat-ui.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='flatstrap/css/flat-ui.css') }}" />-->
+
+        <!-- Latest compiled and minified CSS -->
+        
+        <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" rel="stylesheet">
 
         {% block customcss %} {% endblock %}
 
         <style>
 
         body {
-            padding-top: 60px; /* to make the container go all the way to the bottom of the top bar */
-            padding-bottom: 60px;
+            padding-top: 70px; /* to make the container go all the way to the bottom of the top bar */
+           
         }
 
         .mainpagecentre {
@@ -42,7 +46,11 @@
 
         }
 
+	.center {
+	
+	    text-align: center;
 
+	}
 
         </style>
 
@@ -50,15 +58,40 @@
 
     <body>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
-            <div class="navbar-inner">
+			<div class="navbar-header">
+			
+				<span class="navbar-brand" href="/"> Disce </span>
+			
+			
+			</div>
 
-                <div class="container">
+			<ul class="nav navbar-nav">
 
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></button>
+				<li class={% block indexactive %} {% endblock %}>
 
-                        <ul class="nav">
+                                	<a href="/"> Home </a>
+
+                            	</li>
+
+                            	<li class={% block changelogactive %} {% endblock %}>
+
+                                	<a href="/changelog"> Changelog </a>
+
+                           	 </li>
+
+                            	<li class={%  block homeworkactive %} {%  endblock %}>
+
+                                	<a href="/homework"> Homework </a>
+
+                            	</li>
+
+			</ul>
+
+               <!--     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></button>-->
+
+                       <!-- <ul class="nav">
 
                             <li>
 
@@ -70,31 +103,11 @@
 
                             <li>
 
-                             <li class={% block indexactive %} {% endblock %}>
+			                            </li>
 
-                                <a href="/"> Home </a>
+                        </ul>-->
 
-                            </li>
-
-                            <li class={% block searchactive %} {%  endblock %}>
-
-                                <a href="/search"> Search </a>
-
-                            <li>
-
-                            <li class={% block changelogactive %} {% endblock %}>
-
-                                <a href="/changelog"> Changelog </a>
-
-                            </li>
-
-                        </ul>
-
-                </div>
-
-            </div>
-
-        </div>
+        </nav>
 
         {% block span %}
 
@@ -112,7 +125,11 @@
 
         <script src="http://code.jquery.com/jquery-latest.js"> </script>
 
-        <script src="{{ url_for('static', filename='flatstrap/js/bootstrap.min.js') }}"> </script>
+   <!--     <script src="{{ url_for('static', filename='flatstrap/js/bootstrap.min.js') }}"> </script>-->
+   
+   		<!-- Latest compiled and minified JavaScript -->
+   
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
     </body>
 

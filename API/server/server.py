@@ -1,26 +1,26 @@
-from flask import Flask
-from flask.ext import restful
+from flask import Flask, jsonify, views, render_template
 from WikipediaBase import WikiQueryResults
 from GoogleImagesBase import GoogleImageResults
 
 import WordnikBase
-import simplejson
 
 app = Flask(__name__)
-api = restful.Api(app, catch_all_404s=True)
 
-class QueryResults(restful.Resource):
+class QueryResults(views.MethodView):
 
-    @staticmethod
-    def get(searchQuery):
+    def getResults(self, searchQuery):
 
-        try:
+	try:
 
             wordnikResults = WordnikBase.wordApi.getDefinitions(searchQuery, partOfSpeech='',  sourceDictionaries='all', limit=200)[0].text
 
             wikiResults = WikiQueryResults.wikiqueryresults(searchQuery)
 
-        except TypeError or IndexError or simplejson.JSONDecodeError:
+	    imageURL = GoogleImageResults.googleimageresults(searchQuery)
+
+        except TypeError or IndexError or UnboundLocalError or simplejson.JSONDecodeError:
+
+	    imageURL = "UnboundLocalError - No Google Images URL found"
 
             wordnikResults = "No Wordnik definition found"
 
@@ -32,19 +32,37 @@ class QueryResults(restful.Resource):
 
             {
 
-                "imageUrl" : GoogleImageResults.googleimageresults(searchQuery),
+		"imageURL" : imageURL,
 
-                "wordnikResults" : wordnikResults,
+		"wordnikResults" : wordnikResults,
 
-                "wikiResults" :  wikiResults
+		"wikiResults" :  wikiResults
+
             }
 
         ]
 
-        return { "results" : results }
+	return results
 
-api.add_resource(QueryResults, "/<string:searchQuery>")
+    def get(self, searchQuery):
+
+	"""searchQueryimageURL= request.args.get("imageURL", "", type=str)
+
+	searchQuerywordnikResults = request.args.get("wordnikResults", "", type=str) For later usage if seperate results are needed from different sources in a requests like way
+
+	searchQuerywikiResults = request.args.get("wikiResults", "", type=str)"""
+
+	return jsonify(results = self.getResults(searchQuery))
+
+@app.route("/dev/jstest")
+def JSONTest():
+
+	return render_template("index.html")
+
+app.add_url_rule("/<string:searchQuery>",
+                 view_func=QueryResults.as_view("queryresults"),
+                 methods=["GET"])
 
 if __name__ == "__main__":
 
-    app.run(debug = True, port = 4000, host = '0.0.0.0')
+    app.run(debug = True, port = 4000)

@@ -36,7 +36,7 @@ if [ $dist = y ]
 
     echo "The Disce frontend etup has now completed and will now run"
 
-    python run.py
+    python main.py
 
 elif [ $dist = n ]
 
@@ -52,6 +52,6 @@ elif [ $dist = n ]
 
     echo "The Disce frontend etup has now completed and will now run"
 
-    python run.py
+    python main.py
 
 fi

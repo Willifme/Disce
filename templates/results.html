@@ -5,53 +5,39 @@
 {% block searchactive %} "active" {% endblock %}
 
 {% block span %}
+<div class="container">
 
-        <div class="container">
+    <div class="hero-unit">
 
-            <div class="hero-unit">
+        <form action="/search/" method="GET" class="navbar-form pull-right" onsubmit="return false;">
 
-                <form action="/search/" method="GET" class="navbar-form pull-right" onsubmit="return false;">
+            <input type="search" name="q" placeholder="Search here" required class="form-control-small"/>
 
-                    <input type="search" name="q" placeholder="Search here" required class="input-large"/>
+            <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;">
 
-                    <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;">
+        </form>
 
-                </form>
+        <h1>Results  for {{ searchQuery }}</h1>
 
-                <h1>Results  for {{ searchQuery }}</h1>
+        <p> <p>
 
-                <p> <p>
+        <div class="tab-content">
 
-                    <div class="tab-content">
+                <p> {{ resultsPlace2 }} </p>
 
-                        <div class="tab-pane active" id="infotab" name="infotab" name="test">
+                <p> {{ resultsPlace3 }} </p>
 
-                            <p> {{ resultsPlace2 }} </p>
+                <p> {{ resultsPlace4 }}</p>
 
-                            <p> {{ resultsPlace3 }} </p>
+                <p>
 
-                            <p> {{ resultsPlace4 }}</p>
+                    <img src="{{ resultsPlace1 }}" heigh="200" width="300" title="{{ searchQuery }}" onerror="this.style.display='none'">
 
-                            <p> <center> <img src="{{ resultsPlace1 }}" heigh="200" width="300" title="{{ searchQuery }}" onerror="this.style.display='none'"> </center> </p>
-
-                        </div>
-
-                        <div class="tab-pane" id="imgtab">
-
-                        </div>
-
-                        <div class="tab-pane" id="txteditortab">
-
-                            <p> Coming soon... </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+                </p>
 
         </div>
 
+    </div>
+
+</div>
 {% endblock %}

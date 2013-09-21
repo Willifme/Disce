@@ -10,13 +10,13 @@
 
             <center> <a href=""> <img src="{{ url_for('static', filename='img/logo_64.png') }}" title="Disce"> </a> </center>
 
-            <center>  <b> Welcome to Disce version {{ version }} </b> </center>
+            <center> <b> Welcome to Disce version {{ version }}  </b> </center>
 
             <form action="/search/" method="GET" onsubmit="return false;">
 
-                <center> <div> <input type="search" name="q" placeholder="Search here" class="input-xlarge" required/> </div> </center>
+                <center> <div> <input type="search" name="searchQuery" placeholder="Search here" class="form-control" required/> </div> </center>
 
-                <center> <div> <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.q.value;"> </div> </center>
+                <center> <div> <input type="submit" value="Search" class="btn"  onclick="window.location.href=this.form.action + this.form.searchQuery.value;"> </div> </center>
 
             </form>
 
