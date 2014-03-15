@@ -1,0 +1,15 @@
+# incremental data. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1373481200000 3769 eec07752d40e268ed7f4a1730acc77ab1e40aeb0 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/drawable-mdpi/ic_launcher.png
+1373481200000 24654 696bbbc63d2250ef7d3373f2d602e604acd13d8c /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/drawable-xxhdpi/ic_launcher.png
+1373481200000 7721 39b0f5a0570da92f471225402ad0ea6de30bf2be /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/drawable-hdpi/ic_launcher.png
+1373481200000 217 f02e000d05a079992d2dba18039216c1e6b8784f /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/values-v14/values.xml
+1373731421000 1622 c007d9366b8f63a9597d15a2ccbb2f0b8a80a032 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/values/values.xml
+1373481200000 12329 a8301606e15d4b6dccdd775cc273cfc51a552645 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/drawable-xhdpi/ic_launcher.png
+1373481200000 220 ce5358ff5014a2e66487752e21ad707491010e89 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/menu/login.xml
+1373709238000 2175 b9422310d013a024593f9710b2385737fd956339 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/layout/activity_login.xml
+1373481200000 203 19aedb7cdc3386344e36087b035a0a6b2b91d4cd /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/values-v11/values.xml
+1373481200000 342 0ea8934a4834effd17751ed74bf7b2a1b0fc1ae5 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/values-large/values.xml
+1373709238000 114 916d3a63eeacf4d63f817db247bad3523683ea07 /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/menu/results.xml
+1373732555000 703 493697745d926b19be2ba7662a47739efe42676a /home/william/Documents/Projects/DisceAndroid/Disce/build/res/all/debug/layout/activity_results.xml

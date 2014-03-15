@@ -1,0 +1,18 @@
+# incremental data. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1373730936000 117 faacfee55cb9cb33b3340924c1a7ae33d467528b /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings_activity_results.xml
+1373479633000 945 3c2c10a966ee76155eef9ac952944f6cd8ef5ec2 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/styles.xml
+1373479633000 324 aa1f5f1723de9aee2669dc44a26fbc0ce776d35f /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values-v11/styles.xml
+1373479632000 7721 39b0f5a0570da92f471225402ad0ea6de30bf2be /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/drawable-hdpi/ic_launcher.png
+1373663596000 2175 b9422310d013a024593f9710b2385737fd956339 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/layout/activity_login.xml
+1373479632000 3769 eec07752d40e268ed7f4a1730acc77ab1e40aeb0 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/drawable-mdpi/ic_launcher.png
+1373732548000 596 6e058a941c63758d7e76ffa5ba543cabb06d830b /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/layout/activity_results.xml
+1373731415000 68 47f97977d8f77d8f3ec75a6948965e480bc35141 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings.xml
+1373664045000 114 916d3a63eeacf4d63f817db247bad3523683ea07 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/menu/results.xml
+1373479632000 24654 696bbbc63d2250ef7d3373f2d602e604acd13d8c /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/drawable-xxhdpi/ic_launcher.png
+1373730937000 295 f3ba43f9029fb3f51962690c25bd66c620df4c41 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings_activity_login.xml
+1373479633000 303 2f1f847ac0ff13d69ad73ef6aac6e4b981c4c35e /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values-large/styles.xml
+1373479633000 220 ce5358ff5014a2e66487752e21ad707491010e89 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/menu/login.xml
+1373479632000 12329 a8301606e15d4b6dccdd775cc273cfc51a552645 /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/drawable-xhdpi/ic_launcher.png
+1373479633000 381 b129b276e01126de5b3b753572ac67cbfc19454c /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values-v14/styles.xml

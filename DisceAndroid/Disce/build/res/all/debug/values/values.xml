@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings_activity_login.xml -->
+    <string name="action_forgot_password"></string>
+    <string name="action_search">Search</string>
+    <!-- From: /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings.xml -->
+    <string name="app_name">Disce</string>
+    <!-- From: /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings_activity_login.xml -->
+    <string name="login_progress_signing_in">Searching Disce…</string>
+    <string name="prompt_search">Search</string>
+    <!-- From: /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/strings_activity_results.xml -->
+    <string name="search_results">Results</string>
+    <!-- From: /home/william/Documents/Projects/DisceAndroid/Disce/src/main/res/values/styles.xml -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+</resources>
