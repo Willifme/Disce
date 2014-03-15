@@ -30,9 +30,9 @@ if [ $dist = y ]
 
     source venv/bin/activate
 
-    pip install flask
+    sudo pip install flask
 
-    pip install simplejson
+    sudo pip install simplejson
 
     echo "The Disce frontend etup has now completed and will now run"
 
@@ -46,9 +46,9 @@ elif [ $dist = n ]
 
     source venv/bin/activate
 
-    pip install flask
+    sudo pip install flask
 
-    pip install simplejson
+    sudo pip install simplejson
 
     echo "The Disce frontend etup has now completed and will now run"
 
